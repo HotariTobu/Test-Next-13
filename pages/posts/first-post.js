@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import Head from "next/head"
+import Script from 'next/script'
 
 export default function FirstPost() {
   return (
@@ -12,7 +13,7 @@ export default function FirstPost() {
       </h2>
 
       {/* Assets, Metadata, and CSS */}
-      <div style={{display: 'block'}}>
+      <div style={{ display: 'block' }}>
         {/* Unoptimized image */}
         <img src="/images/profile.jpg" alt="Your Name"></img>
 
@@ -22,7 +23,17 @@ export default function FirstPost() {
 
       <Head>
         <title>First Post</title>
+
+        {/* Warning */}
+        {/* <script src="https://connect.facebook.net/en_US/sdk.js"></script> */}
       </Head>
+
+      {/* Outside Head component */}
+      <Script src="https://connect.facebook.net/en_US/sdk.js" strategy="lazyOnload" onLoad={() => {
+        // needed `use client`?
+        console.log('script loaded correctly. window.FB has been populated')
+        console.log(FB)
+      }}></Script>
     </>
   )
 }
