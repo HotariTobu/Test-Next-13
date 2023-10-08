@@ -3,9 +3,11 @@ import Image from "next/image"
 import Head from "next/head"
 import Script from 'next/script'
 
+import Layout from '../../components/layout'
+
 export default function FirstPost() {
   return (
-    <>
+    <Layout>
       {/* Navigate Between Pages */}
       <h1>First Post</h1>
       <h2>
@@ -34,6 +36,6 @@ export default function FirstPost() {
         console.log('script loaded correctly. window.FB has been populated')
         console.log(FB)
       }}></Script>
-    </>
+    </Layout>
   )
 }
