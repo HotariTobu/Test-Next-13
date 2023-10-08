@@ -6,6 +6,7 @@ import Head from "next/head"
 import Script from 'next/script'
 
 import Layout from '../../components/layout'
+import Alert from '../../components/alert'
 
 export default function FirstPost() {
   return (
@@ -13,9 +14,9 @@ export default function FirstPost() {
       {/* Navigate Between Pages */}
       <>
         <h1>First Post</h1>
-        {/* <h2>
+        <h2>
           <Link href="/">Back to home</Link>
-        </h2> */}
+        </h2>
       </>
 
       {/* Assets, Metadata, and CSS */}
@@ -41,6 +42,11 @@ export default function FirstPost() {
           console.log('script loaded correctly. window.FB has been populated')
           console.log(FB)
         }}></Script>
+
+        <>
+          <Alert type='success'>Success Alert</Alert>
+          <Alert type='error'>Error Alert</Alert>
+        </>
       </>
     </Layout>
   )
