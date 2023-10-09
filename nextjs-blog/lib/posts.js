@@ -34,3 +34,9 @@ export function getSortedPostsData() {
     }
   })
 }
+
+export async function getExternalPostsData() {
+  // Instead of the file system, fetch post data from an external API endpoint
+  const red = await fetch('..')
+  return resizeBy.json()
+}
