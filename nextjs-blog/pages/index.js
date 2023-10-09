@@ -41,6 +41,7 @@ export default function Home({ allPostsData }) {
 
 // Only run on the server-side
 export async function getStaticProps() {
+  // You can fetch data at build time
   const allPostsData = getSortedPostsData()
   return {
     props: {
@@ -48,3 +49,12 @@ export async function getStaticProps() {
     },
   }
 }
+
+// export async function getServerSideProps(context) {
+//   // You can fetch data at request time
+//   return {
+//     props: {
+//       // props for your component
+//     }
+//   }
+// }
