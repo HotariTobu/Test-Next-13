@@ -2,6 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
+import { remark } from 'remark'
+import html from 'remark-html'
+
 const postDirectory = path.join(process.cwd(), 'posts')
 
 export function getSortedPostsData() {
@@ -67,15 +70,23 @@ export function getAllPostIds() {
   }))
 }
 
-export function getPostData(id) {
+const remarker = remark().use(html)
+
+export async function getPostData(id) {
   const fullPath = path.join(postDirectory, `${id}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf-8')
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)
 
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remarker.process(matterResult.content)
+  const contentHtml = processedContent.toString()
+
+  // Combine the data with the id and contentHtml
   return {
     id,
+    contentHtml,
     ...matterResult.data,
   }
 }
