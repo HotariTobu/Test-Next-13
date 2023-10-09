@@ -40,3 +40,29 @@ export async function getExternalPostsData() {
   const red = await fetch('..')
   return resizeBy.json()
 }
+
+export function getAllPostIds() {
+  const filenames = fs.readdirSync(postDirectory)
+
+  /**
+   * Return an array that looks like this
+   * [
+   *  {
+   *    params: {
+   *      id: 'ssg-ssr',
+   *    },
+   *  },
+   *  {
+   *    params: {
+   *      id: 'pre-rendering',
+   *    },
+   *  },
+   * ]
+   */
+
+  return filenames.map(filename => ({
+    params: {
+      id: filename.replace(/\.md/, ''),
+    },
+  }))
+}
