@@ -8,12 +8,14 @@ import Script from 'next/script'
 import Layout from '../../components/layout'
 import Alert from '../../components/alert'
 
-export default function FirstPost() {
+export default function FirstPost({ title }) {
+  title = title || 'First Post'
+
   return (
     <Layout>
       {/* Navigate Between Pages */}
       <>
-        <h1>First Post</h1>
+        <h1>{ title }</h1>
         <h2>
           <Link href="/">Back to home</Link>
         </h2>
@@ -30,7 +32,7 @@ export default function FirstPost() {
         </div>
 
         <Head>
-          <title>First Post</title>
+          <title>{ title }</title>
 
           {/* Warning */}
           {/* <script src="https://connect.facebook.net/en_US/sdk.js"></script> */}
@@ -50,4 +52,13 @@ export default function FirstPost() {
       </>
     </Layout>
   )
+}
+
+export async function getStaticProps() {
+  const title = 'Post Name'
+  return {
+    props: {
+      title,
+    }
+  }
 }
